@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="南科周邊可外送美食資料庫，依餐別、地區與外送門檻快速篩選。" />
+  <title>南科外送美食資料庫</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav container">
+      <div class="brand"><span class="logo">南</span><span>南科外送美食資料庫</span></div>
+      <button id="themeBtn" class="ghost-btn" aria-label="切換深色模式">◐</button>
+    </nav>
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">NANKE DELIVERY WIKI · V1.0</span>
+        <h1>今天南科要吃什麼？</h1>
+        <p>把 Threads 留言整理成可搜尋、可篩選、可持續更新的外送清單。適合公司午餐、會議餐盒與下午茶團購。</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#database">開始找餐點</a>
+          <button id="randomBtn" class="secondary-btn">幫我隨機選一家</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="mini-label">快速統計</div>
+        <div class="stats" id="stats"></div>
+        <p class="fine">資料源自社群留言；下單前請再次向店家確認外送範圍、價格與營業狀況。</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="database">
+    <section class="toolbar">
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="搜尋店名、品項、地區、電話…" />
+      </div>
+      <div class="filter-row">
+        <select id="categoryFilter" aria-label="餐別">
+          <option value="">全部餐別</option>
+          <option>正餐</option><option>下午茶</option><option>飲料</option>
+        </select>
+        <select id="areaFilter" aria-label="地區"><option value="">全部地區</option></select>
+        <select id="thresholdFilter" aria-label="外送門檻">
+          <option value="">全部門檻</option>
+          <option value="500">500 元內</option>
+          <option value="1000">1,000 元內</option>
+          <option value="2000">2,000 元內</option>
+          <option value="known">僅顯示門檻明確</option>
+        </select>
+        <label class="toggle"><input id="verifiedFilter" type="checkbox"><span></span>資訊較完整</label>
+        <button id="resetBtn" class="text-btn">清除篩選</button>
+      </div>
+      <div class="result-line">
+        <strong id="resultCount"></strong>
+        <button id="exportBtn" class="ghost-btn">匯出目前結果 CSV</button>
+      </div>
+    </section>
+
+    <section id="quickTags" class="quick-tags"></section>
+    <section id="cards" class="card-grid"></section>
+    <section id="emptyState" class="empty" hidden>
+      <div>🍽️</div><h2>沒有符合的店家</h2><p>試著放寬外送門檻或清除部分篩選。</p>
+    </section>
+  </main>
+
+  <dialog id="detailModal">
+    <button class="modal-close" id="modalClose">×</button>
+    <div id="modalContent"></div>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>南科外送美食資料庫</strong><br><span>社群整理版 · 2026</span></div>
+      <div>請以店家最新公告為準。</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
